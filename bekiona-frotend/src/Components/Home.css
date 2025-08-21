@@ -1,0 +1,219 @@
+body{
+  background-color:rgb(255, 255, 255) ;
+}
+
+.grocery {
+
+  background-color: rgb(255, 255, 255);
+
+  padding: 80px;
+
+}
+
+
+
+
+ .grocery-heading, .kiona-tales, .revie-div {
+  font-family: "ITC Modern No 216", serif;
+  font-size: 2.5rem;
+}
+
+.product-name-title{
+  font-family: "ITC Modern No 216", serif;
+  font-size: 1.8vw;
+}
+
+.empty-div {
+  height: 5px;
+  width: 8rem;
+  background-color: #2c3e50;
+  margin: 0 auto 3rem auto;
+  border-radius: 3px;
+}
+
+.grocery-card-name {
+  font-family: "ITC Modern No 216", serif;
+  font-size: 1.5rem;
+}
+
+
+
+
+
+
+
+
+.grocery {
+  background: linear-gradient(to right, #FFF9B1, #FFB6C1, #FFF9B1);
+  width: 100%;
+  padding: 20px 0;
+}
+
+.grocery-heading {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #333;
+
+}
+
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.grocery-card {
+  width: 95%;
+  max-width: 300px;
+  background-color: #fff;
+  padding: 15px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.grocery-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
+}
+
+.grocery-card img {
+  width: 100%;
+  height: 270px;
+  object-fit: cover;
+  border-radius: 10px;
+  transition: transform 0.3s ease;
+}
+
+
+
+.grocery-card-name {
+  font-size: 1rem;
+  height: 3rem;
+  font-weight: bold;
+  color: #333;
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 90%;
+}
+
+
+.add-to-cart-btn {
+  background-color: #c8b89a;
+  color: white;
+  border: none;
+  padding: 12px 30px;
+  border-radius: 5px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 10px;
+  width: 80%;
+  font-weight: bold;
+}
+
+.view-more-btn {
+  background-color: #333;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  .grocery-heading {
+    font-size: 20px;
+  }
+
+  .grocery-card {
+    width: 90%;
+    max-width: 260px;
+  }
+
+  .grocery-card img {
+    height: 240px;
+  }
+
+  .add-to-cart-btn {
+    padding: 10px 25px;
+    font-size: 0.85rem;
+  }
+  .description-text {
+    font-size: 14px !important;
+    margin: 0 0 10px 10px !important;
+  }
+  .product-name-title1{
+    font-size: 14px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .grocery-heading {
+    font-size: 18px;
+  }
+
+  .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .grocery-card {
+    width: 100%;
+    max-width: 220px;
+    padding: 10px;
+  }
+
+  .grocery-card img {
+    height: 200px;
+  }
+
+  .add-to-cart-btn {
+    padding: 8px 20px;
+    font-size: 0.8rem;
+  }
+  .description-text {
+    font-size: 12px !important;
+    margin: 0 0 10px 5px !important;
+  }
+  .product-name-title1{
+    font-size: 14px !important;
+  }
+}
+
+@media (max-width: 375px) {
+  .grocery-heading {
+    font-size: 16px;
+  }
+
+  .grocery-card {
+    max-width: 200px;
+    padding: 8px;
+  }
+
+  .grocery-card img {
+    height: 180px;
+  }
+
+  .add-to-cart-btn {
+    padding: 6px 18px;
+    font-size: 0.75rem;
+  }
+}
+
+
+.swiper {
+  width: 100% !important;
+}
+.swiper-slide {
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+}

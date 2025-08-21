@@ -1,0 +1,131 @@
+
+.footer {
+    color: black;
+    padding: 40px 20px; 
+  
+    background-image: url(https://wdtlilacdemo.wpengine.com/wp-content/uploads/2023/06/mask-patten-style.png);
+    height: fit-content;
+  }
+  
+  .footer-row {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  
+  .footer .footer-column {
+    margin-bottom: 20px;
+  }
+  
+  .footer h3 {
+    font-size: 1.1rem;
+    font-weight: bold;
+    margin-bottom: 15px;
+    color: black;
+  }
+  
+  .footer ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .footer ul li {
+    margin: 8px 0;
+    font-size: 0.95rem;
+  }
+  
+  .footer ul li a {
+    color: black;
+    text-decoration: none;
+    transition: color 0.3s;
+  }
+  
+  .footer ul li a:hover {
+    color: #ffcc00;
+  }
+  
+ 
+  .footer .contact p {
+    margin: 5px 0;
+  }
+  
+  .footer .contact a {
+    color: #ffcc00;
+    text-decoration: underline;
+  }
+  
+
+  .footer .app-links img {
+    width: 120px;
+    margin-right: 10px;
+    transition: transform 0.3s;
+  }
+  
+  .footer .app-links img:hover {
+    transform: scale(1.05);
+  }
+  
+
+  .footer-bottom {
+    background: black;
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+    font-size: 0.85rem;
+  }
+
+
+
+
+
+
+
+.social-media-icons {
+  display: flex;
+  justify-content: center;
+  gap: 15px; 
+  margin-top: 20px;
+}
+
+
+.social-media-icons .icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%; 
+
+  color: #333; 
+  text-decoration: none;
+  font-size: 1.5rem;
+  transition: all 0.3s ease; 
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+
+.social-media-icons .icon:hover {
+  transform: scale(1.1); 
+  color: #fff; 
+}
+
+
+.icon.facebook:hover {
+  background-color: #1877f2; 
+}
+.icon.twitter:hover {
+  background-color: #1da1f2; 
+}
+.icon.instagram:hover {
+  background-color: #e4405f; 
+}
+.icon.linkedin:hover {
+  background-color: #0077b5; 
+}
+
+@media (max-width: 576px) {
+  .social-media-icons .icon {
+    width: 40px;
+    height: 40px;
+    font-size: 1.2rem;
+  }
+}

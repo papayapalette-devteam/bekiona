@@ -1,0 +1,568 @@
+/* Navbar Styling */
+.navbar {
+   margin-top: -20px;
+  }
+  
+  /* Brand Styling */
+  .navbar-brand {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #ffffff;
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+  }
+  
+  .logo-icon {
+    color: #00d4ff; /* Logo icon color */
+    font-size: 2rem;
+    animation: spin 4s linear infinite; /* Spinning animation for the logo */
+  }
+  
+  /* Spinning Animation */
+  @keyframes spin {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+  
+  /* Navbar Links */
+  .nav-link {
+    color: black !important;
+    font-size: 1rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
+  }
+  
+  .nav-link:hover {
+    background-color: white;
+    color: black !important;
+    transform: scale(1.1); /* Scale effect on hover */
+  }
+  
+  /* Toggler Styling */
+  .navbar-toggler {
+    border: none;
+    color: black;
+  }
+  
+  .navbar-toggler-icon {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3E%3Cpath stroke='white' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+  }
+  
+  /* Responsive Navbar Alignment */
+  @media (max-width: 768px) {
+    .nav-link {
+      text-align: center;
+      margin: 0.5rem 0;
+    }
+  }
+  
+  /* Smooth Scroll for Links */
+  html {
+    scroll-behavior: smooth;
+  }
+  
+
+
+
+  /* General Flex Container Styling */
+.button-header {
+    display: flex;
+    gap: 5px;
+    align-items: center;
+    justify-content: center;
+    margin: 20px;
+  }
+  
+  /* Button Styling */
+ .buttons-header{
+    background-color: black; /* Primary blue color */
+    color: white;
+    border: none;
+    padding: 5px 5px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    transition: transform 0.2s, box-shadow 0.2s;
+    width: 6rem;
+   
+  }
+  
+  button:hover {
+    background-color:rgb(43, 41, 41); /* Darker blue for hover */
+    transform: translateY(-2px);
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+  }
+  
+  button:active {
+    transform: translateY(0);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Icon Styling */
+  button i {
+    font-size: 18px;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 600px) {
+    div {
+      flex-direction: column;
+      gap: 15px;
+    }
+  
+    button {
+      width: 100%;
+      justify-content: center;
+    }
+  }
+  
+
+
+
+  
+  
+  /* Responsive Styling */
+  @media (max-width: 768px) {
+    .container-lg {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 10px;
+    }
+  
+    #dropdown-basic-button {
+      width: 100%;
+      text-align: left;
+    }
+  }
+  
+
+  /* modal css */
+
+  .custom-modal .modal-dialog {
+    width: 2000px;
+    width: 100%; 
+    margin: auto;
+  }
+  
+  .custom-modal .modal-content {
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  }
+  
+  .custom-modal .modal-header {
+    border-bottom: none;
+  }
+  
+  .custom-modal .modal-footer {
+    border-top: none;
+  }
+   
+
+
+
+
+
+
+
+
+
+  /* ------------------------------------------------------------------------------------------------------- */
+
+/* Navbar Styling */
+
+
+
+
+
+/* Responsive Styling */
+@media (max-width: 768px) {
+  .container-lg {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  #dropdown-basic-button {
+    width: 100%;
+    text-align: left;
+  }
+}
+
+/* cart css start------------------------------------------------------------------------------------------------ */
+.cart-container {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 16px;
+  width: 300px;
+  background-color: #f9f9f9;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.cart-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+  padding: 8px 0;
+  border-bottom: 1px solid #eee;
+}
+
+.cart-item img {
+  width: 50px;
+  height: 50px;
+  border-radius: 4px;
+  object-fit: cover;
+}
+
+.cart-item-info {
+  flex: 1;
+  margin-left: 12px;
+}
+
+.cart-item-title {
+  font-size: 14px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 4px;
+}
+
+.cart-item-price {
+  font-size: 13px;
+  color: #555;
+}
+
+.cart-item-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.cart-item-actions button {
+  padding: 4px 8px;
+  border: none;
+  border-radius: 4px;
+  background-color: #4caf50;
+  color: white;
+  font-size: 12px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.cart-item-actions button:hover {
+  background-color: #45a049;
+}
+
+.cart-item-actions .quantity {
+  font-size: 14px;
+  font-weight: bold;
+  color: #333;
+}
+
+
+
+
+.cart-total {
+  background-color: #f8f9fa; /* Light grey background */
+  border: 1px solid #dee2e6; /* Subtle border */
+  border-radius: 8px; /* Rounded corners */
+  padding: 20px; /* Spacing inside the box */
+  margin: 20px 0; /* Space above and below */
+  text-align: center; /* Center-align text */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for a modern look */
+}
+
+.cart-total h3 {
+  font-size: 1.5rem; /* Slightly larger text */
+  color: #333; /* Darker text color for contrast */
+  font-weight: bold; /* Bold font for emphasis */
+  margin: 0; /* Remove default margin */
+}
+
+.cart-total span {
+  color: #28a745; /* Green color for the price */
+  font-weight: 600; /* Slightly bold */
+}
+
+
+
+
+.modal-title {
+  display: flex;
+  align-items: center; /* Align image and text vertically */
+  gap: 20px; /* Space between image and text */
+}
+
+.modal-title img {
+  height: 3rem;
+  width: 7rem;
+  object-fit: contain; /* Ensures the image scales properly */
+  border-radius: 5px; /* Adds slight rounding to the image */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Adds a subtle shadow */
+}
+
+.modal-title span {
+  font-size: 1.5rem; /* Increase font size for better visibility */
+  font-weight: bold; /* Make text bold */
+  color: #333; /* Dark text color */
+}
+
+/* search box in header code------------------------------------------------------------------------ */
+/* Default Styles */
+.search-bar-container {
+  max-width: 100%;
+  display: flex; /* Flexbox for alignment */
+  justify-content: center; /* Center children horizontally */
+  align-items: center; /* Center children vertically */
+  margin: auto;
+  padding: 0.5rem;
+}
+
+.search-bar-input {
+  flex-grow: 1; /* Make input grow to fill available space */
+  min-width: 50%; /* Minimum width for input */
+  max-width: 70%; /* Maximum width for larger screens */
+  padding: 0.5rem;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.search-bar-button {
+  width: 3rem;
+  height: 3rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #007bff; /* Button background color */
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.search-bar-button i {
+  font-size: 1.2rem;
+}
+
+/* Tablet (768px and below) */
+@media (max-width: 768px) {
+  .search-bar-container {
+    flex-direction: column; /* Stack input and button vertically */
+    padding: 0.5rem;
+  }
+
+  .search-bar-input {
+    max-width: 100%;
+    margin-bottom: 0.5rem; /* Add spacing below input */
+  }
+
+  .search-bar-button {
+    width: 100%; /* Full-width button */
+  }
+}
+
+/* Mobile (576px and below) */
+@media (max-width: 576px) {
+  .search-bar-container {
+    padding: 0.3rem;
+  }
+
+  .search-bar-input {
+    font-size: 0.9rem;
+    padding: 0.4rem;
+  }
+
+  .search-bar-button {
+    font-size: 0.9rem;
+    padding: 0.4rem;
+  }
+}
+
+/* search box in header code end------------------------------------------------------------------------ */
+
+.icon-circle {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background-color: #4CAF50;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 10px;
+  animation: upDown 2s infinite ease-in-out; /* Add animation */
+}
+
+@keyframes upDown {
+  0% {
+    transform: translateY(0); /* Initial position */
+  }
+  50% {
+    transform: translateY(-10px); /* Move up by 10px */
+  }
+  100% {
+    transform: translateY(0); /* Return to the initial position */
+  }
+}
+
+
+
+    @media (max-width: 768px) {
+.carousel-indicators{
+  position: fixed;
+}
+    }
+
+
+
+
+
+
+
+ /* Main Header Styles */
+.main-header {
+  background-color: #00d4ff;
+  width: 100%;
+  padding: 10px 0;
+  height: 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 2rem; 
+}
+
+/* Header Content */
+.header-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  margin: 0 auto; /* Center content */
+  padding: 0 20px; /* Add padding for spacing */
+  flex-wrap: wrap; /* Allow wrapping for smaller screens */
+}
+
+/* Centered Text */
+.header-text {
+  flex: 1;
+  /* margin-bottom: 10px; Space for smaller screens */
+}
+
+.header-text span {
+  color: white;
+  font-size: 1.5rem;
+  font-weight: bold;
+  height: 2rem;
+}
+
+/* Social Icons Container */
+.social-icons {
+  display: flex;
+  gap: 10px;
+  justify-content: center; /* Center icons on smaller screens */
+  flex-wrap: wrap; /* Allow wrapping for icons */
+  height: 2.5rem;
+  align-items: center;
+}
+
+/* Icon Base Styles */
+.icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 50%;
+  text-decoration: none;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.icon i {
+  color: white;
+  font-size: 1rem;
+}
+
+/* Specific Icon Styles */
+.icon.facebook {
+  background-color: #3b5998; /* Facebook color */
+}
+
+.icon.twitter {
+  background-color: #1da1f2; /* Twitter color */
+}
+
+.icon.instagram {
+  background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); /* Instagram gradient */
+}
+
+.icon.linkedin {
+  background-color: #0077b5; /* LinkedIn color */
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  .header-content {
+    flex-direction: column; /* Stack items vertically */
+    text-align: center;
+  }
+
+  .header-text {
+    margin-bottom: 10px;
+  }
+
+  .header-text span {
+    font-size: 1.2rem; /* Adjust font size */
+  }
+
+  .social-icons {
+    gap: 8px; /* Reduce gap between icons */
+  }
+
+  .icon {
+    width: 2.2rem; /* Adjust icon size */
+    height: 2.2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .header-content {
+    flex-direction: row; /* Ensure content stacks vertically */
+  }
+
+  .header-text span {
+    font-size: 1rem; /* Smaller font size for very small screens */
+  }
+
+  .icon {
+    width: 2rem; /* Smaller icons */
+    height: 2rem;
+  }
+
+  .social-icons {
+    display: flex;
+    flex-direction: row;
+    justify-content: center; /* Ensure icons stay visible */
+    flex-wrap: wrap; /* Wrap icons to prevent overflow */
+    gap: 6px; /* Smaller gap for tight spaces */
+  }
+
+  .container{
+    display: flex;
+    flex-direction: row;
+  }
+  .content-container{
+    width: 200px !important;
+  }
+}

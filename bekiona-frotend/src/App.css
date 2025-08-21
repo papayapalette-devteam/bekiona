@@ -1,0 +1,167 @@
+.carousel-indicators {
+  display: none !important;
+}
+
+.feedback-toast {
+  position: fixed;
+  top: 20px;
+  right: 5px;
+  width: 350px;
+  display: none;
+  animation: none;
+  z-index: 9999;
+}
+
+/* When opening */
+.feedback-toast.show {
+  display: block;
+  animation: slideInRight 0.5s ease forwards;
+}
+
+/* When closing */
+.feedback-toast.hide {
+  display: block;
+  animation: slideOutRight 0.5s ease forwards;
+}
+
+@keyframes slideInRight {
+  0% {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideOutRight {
+  0% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+}
+
+
+
+
+/* =============================responsive css ======================================================================= */
+
+/* Toast Container */
+.custom-toast {
+  max-width: 100%;
+  width: 450px;
+  margin: auto;
+  border-radius: 8px;
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Header */
+.cart-logo {
+  height: 40px;
+  max-width: 100%;
+}
+.cart-heading {
+  font-weight: bold;
+  font-size: 16px;
+}
+
+/* Body Styling */
+.custom-toast-body {
+  max-height: 90vh;
+  overflow-y: auto;
+  padding-right: 10px;
+}
+
+/* Cart Item */
+.cart-item {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding: 10px 0;
+  border-bottom: 1px solid #ccc;
+  align-items: center;
+}
+.cart-item-img {
+  width: 60px;
+  height: 60px;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+.cart-item-info {
+  flex: 1;
+}
+.cart-item-title {
+  font-weight: bold;
+  font-size: 14px;
+  margin-bottom: 5px;
+}
+.cart-item-price {
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+}
+.cart-qty {
+  margin-left: auto;
+}
+
+/* Delete Icon */
+.delete-icon {
+  cursor: pointer;
+  color: red;
+  font-size: 16px;
+  margin-top: 5px;
+}
+
+/* Actions */
+.cart-item-actions {
+  display: flex;
+  gap: 5px;
+  align-items: center;
+  margin-top: 5px;
+}
+.cart-item-actions button {
+  padding: 2px 8px;
+  font-size: 14px;
+}
+
+/* Total */
+.cart-total h3 {
+  font-size: 16px;
+  margin-top: 10px;
+  display: flex;
+  justify-content: space-between;
+}
+
+/* Buttons */
+.cart-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+/* Responsive tweaks */
+@media (max-width: 576px) {
+  .custom-toast {
+    width: 95%;
+  }
+  .cart-item {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .cart-item-price {
+    flex-direction: column;
+    gap: 5px;
+  }
+}
+
+@media (max-width: 768px) {
+  .modal-body {
+    padding: 1rem;
+  }
+}

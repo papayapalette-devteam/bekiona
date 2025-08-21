@@ -1,0 +1,290 @@
+
+.navbar-nav .nav-link,
+.navbar-nav .dropdown-toggle {
+    text-transform: capitalize;
+}
+
+/* Underline on hover */
+.navbar-nav .nav-link:hover,
+.navbar-nav .dropdown-toggle:hover {
+    text-decoration: underline;
+}
+
+
+    .navbar-toggler {
+    border: none;
+    color: black;
+  } 
+  
+  .navbar-toggler-icon {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3E%3Cpath stroke='white' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+  } 
+  
+
+  html {
+    scroll-behavior: smooth;
+  }
+  
+
+
+
+  
+  button:hover {
+    background-color:rgb(43, 41, 41); 
+    transform: translateY(-2px);
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+  }
+  
+  button:active {
+    transform: translateY(0);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+
+  button i {
+    font-size: 18px;
+  }
+  
+ 
+  
+
+
+
+  
+  
+ 
+  
+
+
+
+  .custom-modal .modal-dialog {
+    width: 2000px;
+    width: 100%; 
+    margin: auto;
+  }
+  
+  .custom-modal .modal-content {
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  }
+  
+  .custom-modal .modal-header {
+    border-bottom: none;
+  }
+  
+  .custom-modal .modal-footer {
+    border-top: none;
+  }
+   
+
+
+
+
+
+
+
+
+
+
+.cart-container {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 16px;
+  width: 300px;
+  background-color: #f9f9f9;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.cart-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+  padding: 8px 0;
+  border-bottom: 1px solid #eee;
+}
+
+.cart-item img {
+  width: 50px;
+  height: 50px;
+  border-radius: 4px;
+  object-fit: cover;
+}
+
+.cart-item-info {
+  flex: 1;
+  margin-left: 12px;
+}
+
+.cart-item-title {
+  font-size: 14px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 4px;
+}
+
+.cart-item-price {
+  font-size: 13px;
+  color: #555;
+}
+
+.cart-item-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.cart-item-actions button {
+  padding: 4px 8px;
+  border: none;
+  border-radius: 4px;
+  background-color: #4caf50;
+  color: white;
+  font-size: 12px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.cart-item-actions button:hover {
+  background-color: #45a049;
+}
+
+.cart-item-actions .quantity {
+  font-size: 14px;
+  font-weight: bold;
+  color: #333;
+}
+
+
+
+
+.cart-total {
+  background-color: #f8f9fa; 
+  border: 1px solid #dee2e6; 
+  border-radius: 8px; 
+  padding: 20px; 
+  margin: 20px 0; 
+  text-align: center; 
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+}
+
+.cart-total h3 {
+  font-size: 1.5rem;
+  color: #333; 
+  font-weight: bold; 
+  margin: 0; 
+}
+
+.cart-total span {
+  color: #28a745;
+  font-weight: 600; 
+}
+
+
+
+
+.modal-title {
+  display: flex;
+  align-items: center; 
+  gap: 20px; 
+}
+
+.modal-title img {
+  height: 3rem;
+  width: 7rem;
+  object-fit: contain; 
+  border-radius: 5px; 
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
+}
+
+.modal-title span {
+  font-size: 1.5rem; 
+  font-weight: bold; 
+  color: #333; 
+}
+
+
+.icon-circle {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background-color: #4CAF50;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 10px;
+  animation: upDown 2s infinite ease-in-out; 
+}
+
+@keyframes upDown {
+  0% {
+    transform: translateY(0); 
+  }
+  50% {
+    transform: translateY(-10px); 
+  }
+  100% {
+    transform: translateY(0); 
+  }
+}
+
+
+
+    @media (max-width: 768px) {
+.carousel-indicators{
+  position: fixed;
+}
+    }
+
+
+
+    @media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+  
+      /* CSS */
+      
+    }
+    
+    /* 
+      ##Device = Low Resolution Tablets, Mobiles (Landscape)
+      ##Screen = B/w 481px to 767px
+    */
+    
+    @media (min-width: 481px) and (max-width: 767px) {
+      
+      /* CSS */
+      
+    }
+    
+    /* 
+      ##Device = Most of the Smartphones Mobiles (Portrait)
+      ##Screen = B/w 320px to 479px
+    */
+    
+    @media (min-width: 320px) and (max-width: 480px) {
+      
+      .troggle-navbar-button{
+        margin-left: -303px;
+      }
+      
+    }
+
+
+
+
+
+
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,27 @@
+/* Global height for full responsiveness */
+html,
+body,
+#root {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+/* Sidebar Mobile Styles */
+.sidebar {
+  width: 250px;
+}
+
+@media (max-width: 768px) {
+  .sidebar {
+    width: 200px; /* Reduce sidebar width on smaller screens */
+  }
+}
+
+@media (max-width: 576px) {
+  .sidebar {
+    width: 100%; /* Make sidebar take full width on very small screens */
+    position: fixed;
+    z-index: 10;
+  }
+}
