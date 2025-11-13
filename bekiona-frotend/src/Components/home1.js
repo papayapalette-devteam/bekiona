@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import { useCart } from './cartcontext'
 import Header from './Header';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -22,6 +22,9 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 import { Navigation, Pagination, Autoplay } from "swiper/modules";
 import { FaCheckCircle } from "react-icons/fa";
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
 
 
 
@@ -64,6 +67,7 @@ const[product1,setproduct1]=useState([])
   }
   const visibleCombo = showAll1 ? comboProduct : comboProduct.slice(0, 4);
 
+  console.log(visibleCombo);
   
   const[fetchbanner,setfetchbanner]=useState([])
   const [sliderImages, setSliderImages] = useState([]);
@@ -288,12 +292,12 @@ const[product1,setproduct1]=useState([])
 
 
    // Group products into slides (e.g. 4 per slide)
-  const chunkSize = 1;
-  const slides = [];
-  for (let i = 0; i < singleProduct.length; i += chunkSize) {
-    slides.push(singleProduct.slice(i, i + chunkSize));
-  }
-
+  // const chunkSize = 1;
+  // const slides = [];
+  // for (let i = 0; i < singleProduct.length; i += chunkSize) {
+  //   slides.push(singleProduct.slice(i, i + chunkSize));
+  // }
+const paginationRef = useRef(null);
 
 
   return (
@@ -388,212 +392,129 @@ const[product1,setproduct1]=useState([])
 
  
 
-<div className="grocery" style={{ background: 'linear-gradient(to right, #FFF9B1, #FFB6C1, #FFF9B1)', width:"100%" }}>
-  <h1
-    className="grocery-heading text-center"
-    style={{ marginBottom: "20px", color: "#333" }}
-  >
-Combo Products
-  </h1>
-  <div className="empty-div"></div>
-  <div className="container">
-  <div className="row justify-content-center" > {/* g-3 for consistent gaps */}
-    {visibleCombo.map((product, index) => (
-      <React.Fragment key={product.id}>
-        <div
-        key={product.id}
-        className="col-12 col-sm-6 col-md-4 col-lg-3"
-        style={{
-          height: "550px",
-          width:"300px",
-          background: "transparent",
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-        }}
-      >
-        <div
-          className="grocery-card"
-          style={{
-            width: "100%",
-            maxWidth: "300px",
-            backgroundColor: "#fff",
-            padding: "15px",
-            border: "1px solid #ddd",
-            borderRadius: "10px",
-            display: "flex",
-            flexDirection: "column",
-            justifyContent: "center",
-            alignItems: "center",
-            textAlign: "center",
-            position: "relative",
-            overflow: "hidden",
-            transition: "transform 0.3s ease, box-shadow 0.3s ease",
+  <div className="bg-[#f0f5ff] p-4">
+      <h1 className="text-3xl font-extrabold text-center text-gray-800 mb-8 tracking-wide">
+        ✨ Combo Products ✨
+      </h1>
+
+      <div className="container mx-auto px-6 overflow-hidden">
+            <Swiper
+          watchOverflow={true}
+          modules={[Pagination, Autoplay]}
+          spaceBetween={20}
+          slidesPerView={1}
+          shortSwipes={true}
+          pagination={{
+            clickable: true,
+            el: paginationRef.current, // 👈 attach custom pagination container
           }}
-          onMouseEnter={(e) => {
-            e.currentTarget.style.transform = "scale(1.05)";
-            e.currentTarget.style.boxShadow = "0 6px 10px rgba(0, 0, 0, 0.2)";
+          onBeforeInit={(swiper) => {
+            swiper.params.pagination.el = paginationRef.current;
           }}
-          onMouseLeave={(e) => {
-            e.currentTarget.style.transform = "scale(1)";
-            e.currentTarget.style.boxShadow = "0 4px 6px rgba(0, 0, 0, 0.1)";
+          breakpoints={{
+            480: { slidesPerView: 1 },
+            768: { slidesPerView: 2 },
+            1024: { slidesPerView: 3 },
+            1280: { slidesPerView: 4 },
           }}
+          className="mt-10"
         >
-          <div style={{ position: "relative", width: "100%" }}>
-          <img
-  src={product.product_image}
-  alt={product.product_name}
-  loading="eager"
-  className="grocery-card-image"
-  style={{
-    width: "100%",
-    height: "270px",
-    objectFit: "contain",
-    cursor: "pointer",
-    transition: "transform 0.3s ease",
-    borderRadius: "10px",
-  }}
-  onClick={() => navigate(`/product/${product._id}`)}
-/>
-
-          </div>
-          <span
-  className="grocery-card-name"
-  style={{
-    fontSize: "1rem",
-    height: "3rem",
-    fontWeight: "bold",
-    color: "#333",
-    marginTop: "10px",
-    display: "-webkit-box",
-    WebkitBoxOrient: "vertical",
-    WebkitLineClamp: 2,
-    overflow: "hidden",
-    maxWidth: "90%",
-    fontFamily: "'ITC Modern No 216', serif",
-  }}
->
-  {truncateText(product.product_name, 30)} {/* Adjust maxLength as needed */}
-</span>
-          <div
-            className="grocery-card-rating"
-            style={{
-              fontSize: "1rem",
-              color: "#ffc107",
-              margin: "5px 0",
-              display: "flex",
-              justifyContent: "center",
-            }}
-          >
-            {"★".repeat(product.rating)}
-            <span style={{ color: "#ccc", marginLeft: "5px" }}>
-              {"★".repeat(5 - product.rating)}
-            </span>
-          </div>
-          <p
-            className="grocery-card-price"
-            style={{
-              fontSize: "1rem",
-              color: "#666",
-              marginTop: "5px",
-            }}
-          >
-            ₹{product.product_price}
-          </p>
-          <button
-            onClick={() => handleprouctadd(product)}
-            className="add-to-cart-btn"
-            style={{
-                backgroundColor: cart.some(item => item._id === product._id) 
-                ? "green"  // Change this to your desired color when item is in cart
-                : "rgb(51, 51, 51)",
-              color: "white",
-              border: "none",
-              padding: "12px 30px",
-              borderRadius: "5px",
-              fontSize: "0.9rem",
-              cursor: "pointer",
-              transition: "all 0.3s ease",
-              marginTop: "10px",
-              width: "80%",
-              fontWeight: "bold",
-            }}
-          >
-            Add to Cart
-          </button>
-
-          {/* <button
-            // onClick={() => handleprouctadd(product)}
-            className="add-to-cart-btn"
-            style={{
-              backgroundColor: cart.some(item => item._id === product._id) 
-              ? "green"  // Change this to your desired color when item is in cart
-              : "rgb(51, 51, 51)",
-              backgroundColor:"rgb(51, 51, 51)",
-              color: "white",
-              border: "none",
-              padding: "12px 30px",
-              borderRadius: "5px",
-              fontSize: "0.9rem",
-              cursor: "pointer",
-              transition: "all 0.3s ease",
-              marginTop: "10px",
-              width: "80%",
-              fontWeight: "bold",
-            }}
-          >
-            Buy Now
-          </button> */}
-
-          {/* Display message if available */}
-          {cartMessage[product._id] && (
-  <p
-    style={{
-      color: "#fff", // White text for contrast
-      fontSize: "0.9rem",
-      fontWeight: "600",
-      background: "linear-gradient(45deg, #4CAF50, #45A049)", // Smooth green gradient
-      padding: "10px 15px",
-      borderRadius: "8px",
-      marginTop: "10px",
-      display: "inline-block",
-      boxShadow: "0px 4px 8px rgba(0, 0, 0, 0.15)", // Soft shadow effect
-      borderLeft: "4px solid #2E7D32", // Left border for a card-like feel
-      textAlign: "center",
-      letterSpacing: "0.5px",
-      transition: "transform 0.3s ease-in-out", // Animation on hover
-    }}
-    onMouseEnter={(e) => (e.target.style.transform = "scale(1.05)")} // Slight zoom on hover
-    onMouseLeave={(e) => (e.target.style.transform = "scale(1)")}
-  >
-    ✅ {cartMessage[product._id]}
-  </p>
-)}
-        </div>
+          {comboProduct.map((product) => (
+<SwiperSlide key={product._id}>
+  <div className="bg-white shadow-lg rounded-2xl p-4 flex flex-col relative h-[550px] hover:shadow-2xl hover:-translate-y-2 transform transition-all duration-300">
+    {/* Image */}
+    <div
+      className="relative overflow-hidden rounded-xl cursor-pointer flex-shrink-0"
+      onClick={() => navigate(`/product/${product._id}`)}
+    >
+      <img
+        src={product.product_image?.[0]}
+        alt={product.product_name}
+        className="w-full h-60 object-cover hover:scale-105 transition-transform duration-300"
+      />
+      <div className="absolute top-2 right-2 bg-pink-500 text-white text-xs font-semibold px-3 py-1 rounded-full shadow">
+        {product.product_sku}
       </div>
-      </React.Fragment>
-    ))}
+    </div>
+
+    {/* Scrollable Content */}
+    <div className="flex-1 mt-3  pb-20 text-center">
+      <h3 className="text-lg font-semibold text-gray-800 line-clamp-2">
+        {product.product_name}
+      </h3>
+
+     <p className="text-sm text-gray-500 mt-1">
+      ₹{product.product_price} &nbsp;|&nbsp;{" "}
+      <span className="text-green-600 font-semibold animate-pulse">
+        🟢 In Stock
+      </span>
+    </p>
+
+
+      {/* Product Benefits */}
+      {product.product_benefits?.length > 0 ? (
+        <ul className="text-sm text-gray-600 mt-2 list-disc list-inside space-y-1 text-left px-2">
+          {product.product_benefits.slice(0, 2).map((benefit, i) => (
+            <li key={i} className="line-clamp-2">
+              {benefit}
+            </li>
+          ))}
+        </ul>
+      ) : (
+        <div className="text-gray-400 text-sm mt-3 italic">
+          No extra benefits listed
+        </div>
+      )}
+    </div>
+
+    {/* Fixed Add to Cart Button */}
+    <div className="absolute bottom-4 left-4 right-4">
+      <button
+        onClick={() => handleprouctadd(product)}
+        className={`w-full py-2 rounded-lg font-semibold text-white transition-all duration-300 ${
+          cart.some((item) => item._id === product._id)
+            ? "bg-green-600 hover:bg-green-700"
+            : "bg-gray-800 hover:bg-gray-900"
+        }`}
+      >
+        {cart.some((item) => item._id === product._id)
+          ? "Added to Cart ✅"
+          : "Add to Cart 🛒"}
+      </button>
+
+      {/* Cart Message */}
+      {cartMessage[product._id] && (
+        <p className="mt-2 text-green-700 font-medium bg-green-100 rounded-lg py-2">
+          {cartMessage[product._id]}
+        </p>
+      )}
     </div>
   </div>
-  <div className="text-center mt-4">
-    <button
-      className="view-all-btn"
-      style={{
-        backgroundColor: "#333",
-        color: "#fff",
-        border: "none",
-        padding: "10px 20px",
-        borderRadius: "5px",
-        fontSize: "1rem",
-        cursor: "pointer",
-        transition: "all 0.3s ease",
-      }}
-      onClick={() => navigate("/combo")}
-    >
-      View All
-    </button>
-  </div>
-</div>
+  
+</SwiperSlide>
+
+
+          ))}
+            <div
+          ref={paginationRef}
+          className="swiper-pagination mt-6 flex justify-center"
+        ></div>
+        </Swiper>
+
+     
+
+        {/* 👇 “View All Combos” button comes below dots */}
+        <div className="text-center mt-6">
+          <button
+            onClick={() => navigate("/combo")}
+            className="px-8 py-3 bg-gray-800 text-white rounded-lg shadow hover:bg-gray-900 transition-all duration-300"
+          >
+            View All Combos →
+          </button>
+        </div>
+     
+      </div>
+    </div>
 
 
 
@@ -767,9 +688,9 @@ Combo Products
         background: "linear-gradient(to right, #FFF9B1, #FFB6C1, #FFF9B1)",
       }}
     >
-      <h1 className="text-center mb-4" style={{ color: "#333" }}>
+      {/* <h1 className="text-center mb-4" style={{ color: "#333" }}>
         Incredible Products
-      </h1>
+      </h1> */}
 
       <div id="productCarousel" className="carousel slide" data-bs-ride="carousel">
         
