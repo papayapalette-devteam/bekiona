@@ -1758,44 +1758,47 @@ function Header() {
 
 
       {/* ===== TOP BAR ===== */}
-      <div className="flex items-left justify-between px-1 md:px-1 h-[70px] border-b border-gray-200 bg-white relative">
-        {/* Left: Hamburger */}
-        <button
-          onClick={() => setMenuOpen(!menuOpen)}
-          className="md:hidden text-gray-800 focus:outline-none"
-        >
-          {menuOpen ? <X size={26} /> : <Menu size={26} />}
-        </button>
+    <div className="flex items-center w-full px-1 md:px-1 h-[70px] border-b border-gray-200 bg-white relative">
 
-        {/* Center: Logo */}
-        <div
-          onClick={() => navigate("/")}
-          className="absolute left-1/2 transform -translate-x-1/2 font-[500] text-2xl md:text-[32px] cursor-pointer tracking-wide"
-          style={{ fontFamily: '"ITC Modern No 216", serif' }}
-        >
-          KIONA
-        </div>
+  {/* Left: Hamburger */}
+  <button
+    onClick={() => setMenuOpen(!menuOpen)}
+    className="md:hidden text-gray-800 focus:outline-none"
+  >
+    {menuOpen ? <X size={26} /> : <Menu size={26} />}
+  </button>
 
-        {/* Right: Icons (Desktop Only) */}
-        <div className="hidden md:flex items-center space-x-5 text-gray-800">
-          <div className="relative cursor-pointer" onClick={toggleToast}>
-            <ShoppingCart
-              size={22}
-              className="hover:scale-110 transition-transform"
-            />
-            {length > 0 && (
-              <span className="absolute -top-2 -right-2 bg-red-600 text-white text-xs font-bold px-[6px] py-[1px] rounded-full shadow-md">
-                {length}
-              </span>
-            )}
-          </div>
-          <User
-            size={22}
-            className="cursor-pointer hover:scale-110 transition-transform"
-            onClick={handleShow}
-          />
-        </div>
-      </div>
+  {/* Center: Logo */}
+  <div
+    onClick={() => navigate("/")}
+    className="absolute left-1/2 transform -translate-x-1/2 font-[500] text-2xl md:text-[32px] cursor-pointer tracking-wide"
+    style={{ fontFamily: '"ITC Modern No 216", serif' }}
+  >
+    KIONA
+  </div>
+
+  {/* Right: Icons */}
+  <div className="hidden md:flex items-center space-x-5 text-gray-800 ml-auto">
+    <div className="relative cursor-pointer" onClick={toggleToast}>
+      <ShoppingCart
+        size={22}
+        className="hover:scale-110 transition-transform"
+      />
+      {length > 0 && (
+        <span className="absolute -top-2 -right-2 bg-red-600 text-white text-xs font-bold px-[6px] py-[1px] rounded-full shadow-md">
+          {length}
+        </span>
+      )}
+    </div>
+
+    <User
+      size={22}
+      className="cursor-pointer hover:scale-110 transition-transform"
+      onClick={handleShow}
+    />
+  </div>
+</div>
+
 
       {/* ===== DESKTOP MENU ===== */}
       <div className="hidden md:flex justify-center items-center pb-2">
