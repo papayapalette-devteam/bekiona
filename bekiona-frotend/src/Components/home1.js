@@ -1122,96 +1122,47 @@ const paginationRef = useRef(null);
 
 {/* combo start----------------------------------------------------------------------------------- */}
 
-<div
-  style={{
-    padding: "50px 0",
-    marginTop: "2rem",
-    background: 'linear-gradient(to right, #FFF9B1, #FFB6C1, #FFF9B1)',
-  }}
->
-  <div className="container" style={{}}>
-    <div className="row g-4 main-product-div">
+<div className="py-12 mt-8 bg-[#f0f5ff]">
+  <div className="container mx-auto px-4">
+    <div className="space-y-10">
       {Combo.map((product, index) => (
         <div
-          className="col-12 d-flex align-items-center product-item-div"
           key={product._id}
-          style={{
-            flexDirection: index % 2 === 0 ? "row" : "row-reverse",
-            display: "flex",
-            alignItems: "center",
-            marginTop:"0px",
-            
-          }}
+          className={`flex flex-col md:flex-row ${
+            index % 2 !== 0 ? "md:flex-row-reverse" : ""
+          } bg-white rounded-2xl shadow-xl overflow-hidden hover:shadow-2xl transition-shadow duration-300`}
         >
-        
-          <div className="product-image-div" style={{ flex: "1", width:"50%" }}>
+          {/* IMAGE */}
+          <div className="w-full md:w-1/2 h-64 md:h-auto">
             <img
               src={product.product_image}
-              alt={product.name}
-              style={{
-                width: "100%",
-                height: "100%",
-                borderRadius: index % 2 === 0 
-                  ? "10px 0 0 10px" 
-                  : "0 10px 10px 0", 
-              }}
+              alt={product.product_name}
+              className="w-full h-full object-cover"
             />
           </div>
-         
-         <div className="product-content-div" 
-          style={{
-            padding:"0 20px", 
-            width: "50%", 
-            height:"100%",
-            display:"flex",
-            justifyContent:"space-between",
-            alignItems:"center",
-          }}
-         >
-          <div
-            className="product-content-item-div"
-            style={{
-              flex: "1",
-              height: "12rem",
-              width: "100%", 
-              // padding: "20px",
-              borderRadius: index % 2 === 0 
-                ? "0 10px 10px 0" 
-                : "10px 0 0 10px", 
-              boxSizing: "border-box", 
-            }}
-          >
-            <h4  style={{ fontWeight: "bold", margin: "20px 0 10px 20px" }} className="product-name-title1">
+
+          {/* CONTENT */}
+          <div className="w-full md:w-1/2 p-6 flex flex-col justify-center">
+            <h2 className="text-2xl md:text-3xl font-bold text-gray-800 mb-3">
               {product.product_name}
-            </h4>
-            <p
-            className="description-text"
-  style={{
-    margin: "0 0 10px 20px",
-    fontFamily: "'Harmonia Sans', sans-serif",
-    fontSize: "16px", 
-    lineHeight: "1.5",
-    color: "#333", 
-    textAlign: "justify",
-  }}
->
-  {product.description}
-</p>
+            </h2>
 
-            {/* <h6 style={{ fontWeight: "bold", margin: "20px 0 10px 20px" }}>
-            ₹ {product.product_price}
-            </h6> */}
-            
-          </div>
-          </div>
+            <p className="text-gray-600 text-base md:text-lg leading-relaxed text-justify">
+              {product.description}
+            </p>
 
+            {/* Price (If Needed Later)
+            <p className="text-xl font-semibold mt-4 text-pink-600">₹{product.product_price}</p> 
+            */}
+          </div>
         </div>
       ))}
     </div>
   </div>
 </div>
+
 {/* combo end-------------------------------------------------------------------------------------- */}
-{/* revie */}
+{/* review */}
 
 <Container fluid style={{ padding: "40px" }}>
       <h1
