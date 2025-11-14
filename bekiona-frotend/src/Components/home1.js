@@ -392,22 +392,92 @@ const paginationRef = useRef(null);
 
  
 
-  <div className="bg-[#f0f5ff] p-4">
-      <h1 className="text-3xl font-extrabold text-center text-gray-800 mb-8 tracking-wide">
-        ✨ Combo Products ✨
-      </h1>
+ <div className="bg-[#f0f5ff] p-4">
+  <h1 className="text-3xl font-extrabold text-center text-gray-800 mb-8 tracking-wide">
+    ✨ Combo Products ✨
+  </h1>
 
-      <div className="container mx-auto px-6 overflow-hidden">
-            <Swiper
-          watchOverflow={true}
+  <div className="container mx-auto px-6 overflow-hidden">
+
+    {/* If 4 or fewer products => show 2×2 grid */}
+    {comboProduct.length <= 4 ? (
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
+        {comboProduct.map((product) => (
+          <div
+            key={product._id}
+            className="bg-white shadow-lg rounded-2xl p-3 lg:p-4 flex flex-col relative 
+              min-h-[450px] hover:shadow-2xl hover:-translate-y-2 transition-all duration-300"
+          >
+            {/* Image */}
+            <div
+              className="relative overflow-hidden rounded-xl cursor-pointer"
+              onClick={() => navigate(`/product/${product._id}`)}
+            >
+              <img
+                src={product.product_image?.[0]}
+                alt={product.product_name}
+                className="w-full aspect-[4/4] object-cover hover:scale-105 transition-transform duration-300"
+              />
+              <div className="absolute top-2 right-2 bg-pink-500 text-white text-xs font-semibold px-3 py-1 rounded-full shadow">
+                {product.product_sku}
+              </div>
+            </div>
+
+            {/* Content */}
+            <div className="flex-1 mt-3 pb-16 text-center">
+              <h3 className="text-lg font-semibold text-gray-800 line-clamp-2">
+                {product.product_name}
+              </h3>
+
+              <p className="text-sm text-gray-500 mt-1">
+                ₹{product.product_price} &nbsp;|&nbsp;
+                <span className="text-green-600 font-semibold animate-pulse">
+                  🟢 In Stock
+                </span>
+              </p>
+
+              {product.product_benefits?.length > 0 ? (
+                <ul className="text-sm text-gray-600 mt-2 list-disc list-inside space-y-1 text-left px-2">
+                  {product.product_benefits.slice(0, 2).map((benefit, i) => (
+                    <li key={i} className="line-clamp-2">
+                      {benefit}
+                    </li>
+                  ))}
+                </ul>
+              ) : (
+                <div className="text-gray-400 text-sm mt-3 italic">
+                  No extra benefits listed
+                </div>
+              )}
+            </div>
+
+            {/* Add to Cart Button */}
+            <div className="absolute bottom-3 left-3 right-3">
+              <button
+                onClick={() => handleprouctadd(product)}
+                className={`w-full py-2 rounded-lg font-semibold text-white transition-all duration-300 ${
+                  cart.some((item) => item._id === product._id)
+                    ? "bg-green-600 hover:bg-green-700"
+                    : "bg-gray-800 hover:bg-gray-900"
+                }`}
+              >
+                {cart.some((item) => item._id === product._id)
+                  ? "Added to Cart ✅"
+                  : "Add to Cart 🛒"}
+              </button>
+            </div>
+          </div>
+        ))}
+      </div>
+    ) : (
+      /* If more than 4 products => use swiper slider */
+      <>
+        <Swiper
+          watchOverflow
           modules={[Pagination, Autoplay]}
           spaceBetween={20}
           slidesPerView={1}
-          shortSwipes={true}
-          pagination={{
-            clickable: true,
-            el: paginationRef.current, // 👈 attach custom pagination container
-          }}
+          pagination={{ clickable: true, el: paginationRef.current }}
           onBeforeInit={(swiper) => {
             swiper.params.pagination.el = paginationRef.current;
           }}
@@ -420,101 +490,93 @@ const paginationRef = useRef(null);
           className="mt-10"
         >
           {comboProduct.map((product) => (
-<SwiperSlide key={product._id}>
-  <div className="bg-white shadow-lg rounded-2xl p-4 flex flex-col relative h-[550px] hover:shadow-2xl hover:-translate-y-2 transform transition-all duration-300">
-    {/* Image */}
-    <div
-      className="relative overflow-hidden rounded-xl cursor-pointer flex-shrink-0"
-      onClick={() => navigate(`/product/${product._id}`)}
-    >
-      <img
-        src={product.product_image?.[0]}
-        alt={product.product_name}
-        className="w-full h-60 object-cover hover:scale-105 transition-transform duration-300"
-      />
-      <div className="absolute top-2 right-2 bg-pink-500 text-white text-xs font-semibold px-3 py-1 rounded-full shadow">
-        {product.product_sku}
-      </div>
-    </div>
+            <SwiperSlide key={product._id}>
+              <div
+                className="bg-white shadow-lg rounded-2xl p-3 lg:p-4 flex flex-col relative 
+                  min-h-[450px] hover:shadow-2xl hover:-translate-y-2 transition-all duration-300"
+              >
+                {/* Image */}
+                <div
+                  className="relative overflow-hidden rounded-xl cursor-pointer"
+                  onClick={() => navigate(`/product/${product._id}`)}
+                >
+                  <img
+                    src={product.product_image?.[0]}
+                    alt={product.product_name}
+                    className="w-full aspect-[4/3] object-cover hover:scale-105 transition-transform duration-300"
+                  />
+                  <div className="absolute top-2 right-2 bg-pink-500 text-white text-xs font-semibold px-3 py-1 rounded-full shadow">
+                    {product.product_sku}
+                  </div>
+                </div>
 
-    {/* Scrollable Content */}
-    <div className="flex-1 mt-3  pb-20 text-center">
-      <h3 className="text-lg font-semibold text-gray-800 line-clamp-2">
-        {product.product_name}
-      </h3>
+                {/* Content */}
+                <div className="flex-1 mt-3 pb-16 text-center">
+                  <h3 className="text-lg font-semibold text-gray-800 line-clamp-2">
+                    {product.product_name}
+                  </h3>
 
-     <p className="text-sm text-gray-500 mt-1">
-      ₹{product.product_price} &nbsp;|&nbsp;{" "}
-      <span className="text-green-600 font-semibold animate-pulse">
-        🟢 In Stock
-      </span>
-    </p>
+                  <p className="text-sm text-gray-500 mt-1">
+                    ₹{product.product_price} &nbsp;|&nbsp;
+                    <span className="text-green-600 font-semibold animate-pulse">
+                      🟢 In Stock
+                    </span>
+                  </p>
 
+                  {product.product_benefits?.length > 0 ? (
+                    <ul className="text-sm text-gray-600 mt-2 list-disc list-inside space-y-1 text-left px-2">
+                      {product.product_benefits.slice(0, 2).map((benefit, i) => (
+                        <li key={i} className="line-clamp-2">
+                          {benefit}
+                        </li>
+                      ))}
+                    </ul>
+                  ) : (
+                    <div className="text-gray-400 text-sm mt-3 italic">
+                      No extra benefits listed
+                    </div>
+                  )}
+                </div>
 
-      {/* Product Benefits */}
-      {product.product_benefits?.length > 0 ? (
-        <ul className="text-sm text-gray-600 mt-2 list-disc list-inside space-y-1 text-left px-2">
-          {product.product_benefits.slice(0, 2).map((benefit, i) => (
-            <li key={i} className="line-clamp-2">
-              {benefit}
-            </li>
+                {/* Add to Cart Button */}
+                <div className="absolute bottom-3 left-3 right-3">
+                  <button
+                    onClick={() => handleprouctadd(product)}
+                    className={`w-full py-2 rounded-lg font-semibold text-white transition-all duration-300 ${
+                      cart.some((item) => item._id === product._id)
+                        ? "bg-green-600 hover:bg-green-700"
+                        : "bg-gray-800 hover:bg-gray-900"
+                    }`}
+                  >
+                    {cart.some((item) => item._id === product._id)
+                      ? "Added to Cart ✅"
+                      : "Add to Cart 🛒"}
+                  </button>
+                </div>
+              </div>
+            </SwiperSlide>
           ))}
-        </ul>
-      ) : (
-        <div className="text-gray-400 text-sm mt-3 italic">
-          No extra benefits listed
-        </div>
-      )}
-    </div>
+        </Swiper>
 
-    {/* Fixed Add to Cart Button */}
-    <div className="absolute bottom-4 left-4 right-4">
-      <button
-        onClick={() => handleprouctadd(product)}
-        className={`w-full py-2 rounded-lg font-semibold text-white transition-all duration-300 ${
-          cart.some((item) => item._id === product._id)
-            ? "bg-green-600 hover:bg-green-700"
-            : "bg-gray-800 hover:bg-gray-900"
-        }`}
-      >
-        {cart.some((item) => item._id === product._id)
-          ? "Added to Cart ✅"
-          : "Add to Cart 🛒"}
-      </button>
-
-      {/* Cart Message */}
-      {cartMessage[product._id] && (
-        <p className="mt-2 text-green-700 font-medium bg-green-100 rounded-lg py-2">
-          {cartMessage[product._id]}
-        </p>
-      )}
-    </div>
-  </div>
-  
-</SwiperSlide>
-
-
-          ))}
-            <div
+        <div
           ref={paginationRef}
           className="swiper-pagination mt-6 flex justify-center"
         ></div>
-        </Swiper>
+      </>
+    )}
 
-     
-
-        {/* 👇 “View All Combos” button comes below dots */}
-        <div className="text-center mt-6">
-          <button
-            onClick={() => navigate("/combo")}
-            className="px-8 py-3 bg-gray-800 text-white rounded-lg shadow hover:bg-gray-900 transition-all duration-300"
-          >
-            View All Combos →
-          </button>
-        </div>
-     
-      </div>
+    {/* View All Combos */}
+    <div className="text-center mt-6">
+      <button
+        onClick={() => navigate("/combo")}
+        className="px-8 py-3 bg-gray-800 text-white rounded-lg shadow hover:bg-gray-900 transition-all duration-300"
+      >
+        View All Combos →
+      </button>
     </div>
+  </div>
+</div>
+
 
 
 
