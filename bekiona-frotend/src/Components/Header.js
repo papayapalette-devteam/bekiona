@@ -45,7 +45,7 @@ function Header() {
   useEffect(() => {
     getpaymentoptions();
   }, []);
-  console.log(paymentoptions);
+
 
   const [manualCityMode, setManualCityMode] = useState(false);
 

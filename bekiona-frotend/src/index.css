@@ -1,3 +1,20 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.8s ease-out;
+}
+
+
+/* Change Bootstrap Carousel control arrow color */
+#reviewCarousel .carousel-control-prev-icon,
+#reviewCarousel .carousel-control-next-icon {
+  filter: invert(0) brightness(0) saturate(0) contrast(0) hue-rotate(0deg);
+}

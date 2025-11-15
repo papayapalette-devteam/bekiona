@@ -307,84 +307,78 @@ const paginationRef = useRef(null);
 
 {/* banner start----------------------------------------------------------------------------------------------- */}
 
-<div className="container-fluid p-0">
-  <Carousel data-bs-theme="dark" style={{marginTop:"100px",position:"relative"}}>
+<div className="w-full mt-24">
+  <Carousel data-bs-theme="dark" className="relative overflow-hidden">
     {sliderImages.map((banner, index) => (
       <Carousel.Item key={index}>
-        <img
-          className="d-block w-100 img-fluid"
-          src={banner.sliderBannerImage}
-          alt={`Slide ${index + 1}`}
-          style={{
-            objectFit: "cover",
-            height: "100%", // Adjust as per requirements
-            maxHeight: "500px", // Maximum height for larger screens
-          }}
-          onClick={() => window.location.href = banner.bannerLink}
-        />
+
+        <div
+          className="
+            w-full 
+            h-[35vh]        /* ⭐ Small height on mobile */
+            sm:h-[45vh]
+            md:h-[65vh] 
+            lg:h-[80vh]
+            relative overflow-hidden
+          "
+        >
+          <img
+            src={banner.sliderBannerImage}
+            alt={`Slide ${index + 1}`}
+            onClick={() => window.location.href = banner.bannerLink}
+
+            className="
+              w-full h-full 
+              object-cover     /* ⭐ No black/white gaps */
+              transition-transform duration-[2000ms] ease-out
+              md:hover:scale-105
+            "
+          />
+        </div>
+
       </Carousel.Item>
     ))}
   </Carousel>
 </div>
+
+
 {/* banner main end--------------------------------------------------------------------------------------------- */}
 
 
 {/* content start------------------------------------------------------------------- */}
-<div style={{ padding: "40px", marginBottom: "3rem", marginTop: "3rem", textAlign: "center" }}>
-  <h1 id="content1"
-    style={{
-      fontSize: "3vw",
-      fontFamily: "'ITC Modern No 216', serif",
-      fontWeight: "bold",
-      color: "#222",
-      marginBottom: "20px",
-    }}
-  >
-    Kiona Skin Care: Embrace Your Natural Glow
-  </h1>
-  <p
-    style={{
-      fontSize: "1.3vw",
-      fontFamily: "Georgia, serif",
-      color: "#444",
-      lineHeight: "1.8",
-      margin: "0 auto",
-      maxWidth: "800px",
-    }}
-  >
-    Founded in 2020 by a team of skincare professionals and holistic health
-    experts, <strong>Kiona Skin Care</strong> was born out of a passion to bring
-    back the purity of nature to your skincare routine. In a world where
-    harsh chemicals dominate, we believe in the power of organic and
-    plant-based ingredients that nurture and protect your skin.<strong>Our products,
-    including face washes, shampoos, and serums, are crafted with love and
-    care, using only the finest natural ingredients.</strong> 
-  </p>
+<div className="bg-[#f0f5ff] w-full py-16 px-6 text-center">
+  <div className="max-w-4xl mx-auto animate-fadeIn">
+    <h1
+      id="content1"
+      className="text-3xl md:text-5xl font-bold text-gray-900 font-serif mb-6"
+    >
+      Kiona Skin Care: Embrace Your Natural Glow
+    </h1>
 
-  {/* Centered Button */}
-  <button
-    style={{
-      marginTop: "20px",
-      padding: "12px 24px",
-      fontSize: "18px",
-      fontWeight: "bold",
-      color: "#fff",
-      backgroundColor: "#007bff",
-      border: "none",
-      borderRadius: "8px",
-      cursor: "pointer",
-      transition: "background 0.3s ease",
-    }}
-    onMouseOver={(e) => (e.target.style.backgroundColor = "#0056b3")}
-    onMouseOut={(e) => (e.target.style.backgroundColor = "#007bff")}
+    <p className="text-base md:text-lg text-gray-600 leading-relaxed font-serif">
+      Founded in 2020 by a team of skincare professionals and holistic health
+      experts, <strong className="text-gray-800">Kiona Skin Care</strong> was born out of a passion
+      to bring back the purity of nature to your skincare routine. In a world
+      where harsh chemicals dominate, we believe in the power of organic and
+      plant-based ingredients that nurture and protect your skin.
+      <strong className="text-gray-800">
+        Our products, including face washes, shampoos, and serums, are crafted
+        with love and care, using only the finest natural ingredients.
+      </strong>
+    </p>
 
-    onClick={() =>
-      navigate("/aboutus")
-      }
-  >
-    More About
-  </button>
+    {/* Button */}
+    <button
+      onClick={() => navigate("/aboutus")}
+      className="mt-8 px-8 py-3 bg-blue-600 text-white font-semibold rounded-lg 
+                 hover:bg-blue-700 transition duration-300 shadow-md hover:shadow-lg
+                 active:scale-95"
+    >
+      More About
+    </button>
+  </div>
 </div>
+
 {/* content end--------------------------------------------------------------------------- */}
 
 {/* product cart section------------------------------------------------------------------------------------- */}
@@ -452,20 +446,21 @@ const paginationRef = useRef(null);
             </div>
 
             {/* Add to Cart Button */}
-            <div className="absolute bottom-3 left-3 right-3">
-              <button
-                onClick={() => handleprouctadd(product)}
-                className={`w-full py-2 rounded-lg font-semibold text-white transition-all duration-300 ${
-                  cart.some((item) => item._id === product._id)
-                    ? "bg-green-600 hover:bg-green-700"
-                    : "bg-gray-800 hover:bg-gray-900"
-                }`}
-              >
-                {cart.some((item) => item._id === product._id)
-                  ? "Added to Cart ✅"
-                  : "Add to Cart 🛒"}
-              </button>
-            </div>
+ <button
+  onClick={() => handleprouctadd(product)}
+  className={`w-full py-2 rounded-lg font-semibold text-white transition-all duration-300 shadow-md
+    ${
+      cart.some((item) => item._id === product._id)
+        ? "bg-green-600 hover:bg-green-700"
+        : "bg-gradient-to-r from-amber-500 to-yellow-600 hover:from-yellow-500 hover:to-amber-600 hover:shadow-lg"
+    }`}
+>
+  {cart.some((item) => item._id === product._id)
+    ? "Added to Cart ✅"
+    : "Add to Cart 🛒"}
+</button>
+
+
           </div>
         ))}
       </div>
@@ -1164,67 +1159,82 @@ const paginationRef = useRef(null);
 {/* combo end-------------------------------------------------------------------------------------- */}
 {/* review */}
 
-<Container fluid style={{ padding: "40px" }}>
-      <h1
-        className="revie-div"
-        style={{
-          textAlign: "center",
-          marginBottom: "20px",
-          color: "#333",
-        }}
-      >
-        Customer Reviews
-      </h1>
-      <div className="empty-div"></div>
+<Container
+  fluid
+  className="py-10 px-4 md:px-16 bg-[#f0f5ff]"
+>
+  <h1 className="text-center text-3xl md:text-4xl font-extrabold text-gray-800 mb-10 tracking-wide">
+    ⭐ Customer Reviews ⭐
+  </h1>
 
-      {loading ? (
-        <p style={{ textAlign: "center" }}>Loading reviews...</p>
-      ) : reviews.length > 0 ? (
-        <Carousel interval={3000} indicators={true} controls={true}>
-          {reviews.map((review, idx) => (
-            <Carousel.Item key={idx}>
-              <Row
-                className="d-flex justify-content-center"
-                style={{ padding: "20px" }}
+  {loading ? (
+    <p className="text-center text-gray-500 text-lg">Loading reviews...</p>
+  ) : reviews.length > 0 ? (
+    <div className="relative">
+      <Carousel id="reviewCarousel" interval={1000} indicators={true} controls={true} touch>
+        {reviews.map((review, idx) => (
+          <Carousel.Item key={idx}>
+            <div className="flex justify-center px-2">
+              <div
+                className="
+                  bg-white shadow-lg rounded-2xl p-8 md:p-10 max-w-xl w-full 
+                  border border-gray-100 
+                  hover:shadow-xl transition-all duration-300
+                  text-center
+                "
               >
-                <Col
-                  md={6}
-                  style={{
-                    background: "transparent",
-                    padding: "20px",
-                    margin: "10px",
-                    textAlign: "center",
-                  }}
-                >
+                <h4 className="text-xl font-semibold text-gray-900 mb-2">
+                  {review.name}
+                </h4>
 
-                  {/* <img
-                    src={review.product_image}
-                    alt={review.name}
-                    style={{
-                      borderRadius: "50%",
-                      width: "80px",
-                      height: "80px",
-                      marginBottom: "10px",
-                    }}
-                  /> */}
-                  <h4 style={{ color: "#222", fontWeight: "bold" }}>
-                    {review.name}
-                  </h4>
-                  <div style={{ marginBottom: "10px" }}>
-                    {renderStars(review.rating)}
-                  </div>
-                  <p style={{ fontStyle: "italic", color: "#555" }}>
-                    "{review.comment}"
-                  </p>
-                </Col>
-              </Row>
-            </Carousel.Item>
-          ))}
-        </Carousel>
-      ) : (
-        <p style={{ textAlign: "center" }}>No reviews available.</p>
-      )}
-    </Container>
+                <div className="flex justify-center mb-3">
+                  {renderStars(review.rating)}
+                </div>
+
+                <p className="italic text-gray-600 text-base leading-relaxed">
+                  "{review.comment}"
+                </p>
+              </div>
+            </div>
+          </Carousel.Item>
+        ))}
+      </Carousel>
+
+      {/* CUSTOM BUTTONS */}
+      {/* <div className="flex justify-center gap-6 mt-6">
+  
+        <button
+          className="
+            bg-purple-600 hover:bg-purple-700 text-white
+            px-6 py-2 rounded-full font-semibold shadow-lg 
+            transition-all duration-300
+          "
+          data-bs-target="#reviewCarousel"
+          data-bs-slide="prev"
+        >
+          ◀ Prev
+        </button>
+
+    
+        <button
+          className="
+            bg-purple-600 hover:bg-purple-700 text-white
+            px-6 py-2 rounded-full font-semibold shadow-lg 
+            transition-all duration-300
+          "
+          data-bs-target="#reviewCarousel"
+          data-bs-slide="next"
+        >
+          Next ▶
+        </button>
+      </div> */}
+    </div>
+  ) : (
+    <p className="text-center text-gray-500 text-lg">No reviews available.</p>
+  )}
+</Container>
+
+
 
 
 
@@ -1233,7 +1243,7 @@ const paginationRef = useRef(null);
 
 {/* blog start-------------------------------------------------------------------------------- */}
 
-<div
+{/* <div
   style={{
     fontFamily: "'ITC Modern No 216', serif",
     padding: "40px",
@@ -1250,7 +1260,7 @@ const paginationRef = useRef(null);
       <div className="empty-div"></div>
     </div>
 
-    {/* Responsive Grid */}
+    
     <div className="row g-4">
       {visibleBlogs.map((post, index) => (
         <div className="col-sm-12 col-md-6 col-lg-4" key={index}>
@@ -1295,7 +1305,7 @@ const paginationRef = useRef(null);
       ))}
     </div>
 
-    {/* Responsive Button */}
+   
     <div style={{ textAlign: "center", marginTop: "20px" }}>
       <button
         className="btn btn-dark"
@@ -1304,8 +1314,8 @@ const paginationRef = useRef(null);
          
           padding: "10px 20px",
           fontSize: "16px",
-          width: "100%",  // Full-width on mobile
-          maxWidth: "200px", // Restrict width on larger screens
+          width: "100%",  
+          maxWidth: "200px", 
         }}
         onClick={() => navigate("/blog1")}
       >
@@ -1313,7 +1323,7 @@ const paginationRef = useRef(null);
       </button>
     </div>
   </div>
-</div>
+</div> */}
 {/* blog end---------------------------------------------------------------------------------- */}
 
 <div

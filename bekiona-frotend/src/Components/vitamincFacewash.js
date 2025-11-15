@@ -78,7 +78,7 @@ function VitamincFacewash() {
         fetchData();
       }, []);
 
-  
+
 
   const [pid,setpid]=useState("")
   const getproduct = async () => {
@@ -261,275 +261,231 @@ function VitamincFacewash() {
       }
       <Header /> */}
 
-      <div style={{ display: "flex", gap: "10px", padding: "20px",marginTop:"100px",padding:"90px", backgroundColor:"#fcf7ee" }}>
+<div className="w-full bg-[#fcf7ee] pt-28 pb-16 px-4 md:px-20">
+
+  {/* ---------- PRODUCT SECTION ---------- */}
   {Products.map((product) => (
     <div
-      key={product.id}
-      style={{
-        display: "flex",
-        gap: "20px",
-        // borderBottom: "1px solid #ddd",
-        // paddingBottom: "20px",
-        marginBottom: "20px",
-      }}
+      key={product._id}
+      className="flex flex-col lg:flex-row gap-10 bg-white rounded-2xl shadow-xl p-6 md:p-10"
     >
       {/* Product Image */}
-      <div style={{ flex: "1", display: "flex", justifyContent: "center" }}>
-      <img
+      <div className="flex-1 flex justify-center">
+        <img
           src={product?.product_image}
-          style={{ height: "100%", width:"100%", boxShadow:"10px 10px 20px rgba(0,0,0,0.2)" }}
-          alt={product?.product_name || "Product Image"}
-          // className="img-fluid"
+          alt={product?.product_name}
+          className="rounded-xl shadow-2xl w-full max-w-md object-contain"
         />
       </div>
 
-      {/* Product Details */}
-      <div style={{ flex: "2", paddingLeft: "20px" }}>
-        <h2 style={{ fontSize: "24px", marginBottom: "10px" }}>
+      {/* Product Info */}
+      <div className="flex-1 space-y-4">
+        <h2 className="text-3xl font-bold text-gray-900">
           {product.product_name}
         </h2>
-        <p style={{ fontSize: "18px", color: "#555" }}>₹{product.product_price}</p>
-        <div style={{ display: "flex", margin: "10px 0" }}>
-          <span style={{ color: "#f4c150", marginRight: "10px" }}>★★★★☆</span>
-          <span>(4.5)</span>
+
+        {/* Price */}
+        <p className="text-2xl font-semibold text-gray-700">
+          ₹{product.product_price}
+        </p>
+
+        {/* Rating */}
+        <div className="flex items-center gap-2">
+          <span className="text-yellow-400 text-xl">★★★★☆</span>
+          <span className="text-gray-600">(4.5)</span>
         </div>
+
+        {/* Description (clamped) */}
         <p
-  style={{
-    color: "#777",
-    marginBottom: "20px",
-    display: "-webkit-box",
-    WebkitBoxOrient: "vertical",
-    overflow: "hidden",
-    WebkitLineClamp: 3, // Show only 3 lines
-  }}
-  dangerouslySetInnerHTML={{
-    __html: product.product_description, // Pass the actual HTML content
-  }}
-/>
+          className="text-gray-600 line-clamp-3"
+          dangerouslySetInnerHTML={{ __html: product.product_description }}
+        />
 
-        <div>
-          <button
-           onClick={() => handleprouctadd(product)}
-            style={{
-              padding: "10px 20px",
-              backgroundColor: cart.some(item => item._id === product._id) 
-              ? "green"  // Change this to your desired color when item is in cart
-              : "#c8b89a",
-              border: "none",
-              borderRadius: "5px",
-              cursor: "pointer",
-              marginRight: "10px",
-            }}
-          >
-            ADD TO CART
-          </button>
+        {/* Add to Cart */}
+        <button
+          onClick={() => handleprouctadd(product)}
+          className={`px-6 py-3 rounded-lg text-white font-semibold transition-all
+            ${cart.some((i) => i._id === product._id)
+              ? "bg-green-600 hover:bg-green-700"
+              : "bg-[#c8b89a] hover:bg-[#b5a88e]"
+            }`}
+        >
+          ADD TO CART
+        </button>
 
-         
-          {/* <button
-            style={{
-              padding: "10px 20px",
-              backgroundColor: "#ddd",
-              border: "none",
-              borderRadius: "5px",
-              cursor: "pointer",
-            }}
-          >
-            ADD TO WISHLIST
-          </button> */}
-        </div>
+        {/* Cart Message */}
+        {cartMessage[product._id] && (
+          <p className="mt-3 px-4 py-2 bg-green-600 text-white rounded-lg shadow-md inline-block">
+            ✅ {cartMessage[product._id]}
+          </p>
+        )}
 
-
-  {/* Display message if available */}
-  {cartMessage[product._id] && (
-  <p
-    style={{
-      color: "#fff", // White text for contrast
-      fontSize: "0.9rem",
-      fontWeight: "600",
-      background: "linear-gradient(45deg, #4CAF50, #45A049)", // Smooth green gradient
-      padding: "10px 15px",
-      borderRadius: "8px",
-      marginTop: "10px",
-      display: "inline-block",
-      boxShadow: "0px 4px 8px rgba(0, 0, 0, 0.15)", // Soft shadow effect
-      borderLeft: "4px solid #2E7D32", // Left border for a card-like feel
-      textAlign: "center",
-      letterSpacing: "0.5px",
-      transition: "transform 0.3s ease-in-out", // Animation on hover
-    }}
-    onMouseEnter={(e) => (e.target.style.transform = "scale(1.05)")} // Slight zoom on hover
-    onMouseLeave={(e) => (e.target.style.transform = "scale(1)")}
-  >
-    ✅ {cartMessage[product._id]}
-  </p>
-)}
-
-
-        
-        <div style={{ marginTop: "20px", fontSize: "14px", color: "#555" }}>
+        {/* SKU + Category */}
+        <div className="pt-4 text-gray-600 space-y-1">
           <p>SKU: {product.product_sku}</p>
-          <p>Categories: {product.product_category}</p>
-          {/* <p>Tag: {product.tag}</p> */}
-          <p style={{ display: "flex", gap: "10px", alignItems: "center" }}>
-  Share:{" "}
-  <a href={linkedinShare} target="_blank" rel="noopener noreferrer" style={{ color: "#0077b5", textDecoration: "none" }}>LinkedIn</a>
-  <a href={twitterShare} target="_blank" rel="noopener noreferrer" style={{ color: "#1da1f2", textDecoration: "none" }}>Twitter</a>
-  <a href={facebookShare} target="_blank" rel="noopener noreferrer" style={{ color: "#3b5998", textDecoration: "none" }}>Facebook</a>
-</p>
+          <p>Category: {product.product_category || "N/A"}</p>
+
+          {/* Social Share */}
+          <div className="flex items-center gap-3 mt-2">
+            <span className="font-semibold">Share:</span>
+            <a href={linkedinShare} className="text-blue-700 font-medium">LinkedIn</a>
+            <a href={twitterShare} className="text-sky-500 font-medium">Twitter</a>
+            <a href={facebookShare} className="text-blue-600 font-medium">Facebook</a>
+          </div>
         </div>
       </div>
     </div>
   ))}
-</div>
 
-<div style={{ 
-  borderTop: "1px solid #ddd", 
-  margin: "0 50px" // Adds 50px margin to left and right
-}}></div>
+  {/* Divider */}
+  <div className="border-t border-gray-300 my-12"></div>
 
+  {/* ---------- TABS SECTION ---------- */}
+  <div className="max-w-4xl mx-auto">
 
-     {/* ⭐⭐ Tab Section (Description, Additional Info, Reviews) ⭐⭐ */}
-<div style={{  maxWidth: "900px", margin: "0 auto" }}>
-  {/* Tabs */}
-  <div style={{ display: "flex", justifyContent: "center", borderBottom: "2px solid #ddd" }}>
-    {["description", "info", "reviews"].map((tab) => (
-      <button
-        key={tab}
-        onClick={() => setActiveTab(tab)}
-        style={{
-          background: activeTab === tab ? "#f4c150" : "#fff",
-          color: activeTab === tab ? "#fff" : "#333",
-          padding: "12px 20px",
-          fontSize: "16px",
-          fontWeight: "bold",
-          border: "1px solid #f4c150",
-          borderBottom: activeTab === tab ? "none" : "1px solid #ddd",
-          cursor: "pointer",
-          flex: 1,
-          transition: "0.3s ease",
-          textTransform: "uppercase",
-        }}
-      >
-        {tab === "description" ? "Description" : tab === "info" ? "Additional Info" : "Reviews"}
-      </button>
-    ))}
+    {/* Tabs */}
+    <div className="flex border-b border-gray-300">
+      {["description", "info", "reviews"].map((tab) => (
+        <button
+          key={tab}
+          onClick={() => setActiveTab(tab)}
+          className={`flex-1 py-3 text-lg font-semibold uppercase transition-all
+            ${activeTab === tab
+              ? "bg-yellow-500 text-white border-b-4 border-yellow-600"
+              : "bg-white text-gray-700 hover:bg-yellow-100"
+            }`}
+        >
+          {tab === "description"
+            ? "Description"
+            : tab === "info"
+            ? "Additional Info"
+            : "Reviews"}
+        </button>
+      ))}
+    </div>
+
+    {/* Tab Content */}
+    <div className="bg-white shadow-md p-6 md:p-10 rounded-b-xl text-gray-700">
+
+      {/* Description */}
+      {activeTab === "description" && (
+        <div className="text-lg leading-relaxed">
+          {Products.map((item) => (
+            <div
+              className="mb-6"
+              dangerouslySetInnerHTML={{ __html: item.product_description }}
+            />
+          ))}
+        </div>
+      )}
+
+      {/* Additional Info */}
+      {activeTab === "info" && (
+        <div className="text-lg">
+          {Products.map((item) => (
+            <ul className="list-disc ml-6 text-gray-600 space-y-2">
+              {item.product_benefits.map((b, index) => (
+                <li key={index}>{b}</li>
+              ))}
+            </ul>
+          ))}
+        </div>
+      )}
+
+      {/* Reviews */}
+      {activeTab === "reviews" && (
+        <div>
+          <h3 className="text-2xl font-semibold mb-4">Customer Reviews</h3>
+
+          {loading ? (
+            <p>Loading reviews...</p>
+          ) : newReviews.length > 0 ? (
+            newReviews.map((review, index) => (
+              <div
+                key={index}
+                className="border border-gray-300 p-4 mb-4 rounded-lg"
+              >
+                <strong className="text-gray-900 text-lg">{review.name}</strong>
+                <p className="text-gray-700">{review.comment}</p>
+                <span className="text-yellow-500">
+                  {"★".repeat(review.rating)}
+                  {"☆".repeat(5 - review.rating)}
+                </span>
+              </div>
+            ))
+          ) : (
+            <p>No reviews yet.</p>
+          )}
+
+          {/* Add Review */}
+          <div className="mt-10">
+
+            <h3 className="text-2xl font-semibold mb-4">Add a Review</h3>
+
+            {/* Rating Stars */}
+            <div className="text-3xl mb-3 flex justify-center">
+              {[1, 2, 3, 4, 5].map((star) => (
+                <span
+                  key={star}
+                  onClick={() => handleRating(star)}
+                  className={`cursor-pointer transition ${
+                    star <= review.rating ? "text-yellow-500" : "text-gray-300"
+                  }`}
+                >
+                  ★
+                </span>
+              ))}
+            </div>
+
+            {/* Inputs */}
+            <textarea
+              placeholder="Your review"
+              className="w-full border border-gray-300 rounded-lg p-3 mb-4"
+              onChange={(e) =>
+                setReview({ ...review, comment: e.target.value })
+              }
+            />
+
+            <div className="flex gap-4">
+              <input
+                type="text"
+                placeholder="Name"
+                className="w-1/2 border border-gray-300 rounded-lg p-3"
+                onChange={(e) =>
+                  setReview({ ...review, name: e.target.value })
+                }
+              />
+              <input
+                type="email"
+                placeholder="Email"
+                className="w-1/2 border border-gray-300 rounded-lg p-3"
+                onChange={(e) =>
+                  setReview({ ...review, email: e.target.value })
+                }
+              />
+            </div>
+
+            {/* Submit */}
+            <button
+              onClick={addreview}
+              className="mt-6 bg-yellow-500 text-white px-6 py-3 rounded-xl font-semibold hover:bg-yellow-600 transition"
+            >
+              Submit Review
+            </button>
+          </div>
+        </div>
+      )}
+
+    </div>
   </div>
-
-  {/* ⭐ Tab Content */}
-  <div style={{ background:"transparent", padding: "30px", borderRadius: "10px", boxShadow: "0 4px 8px rgba(0,0,0,0.1)", textAlign: "center" }}>
-  {activeTab === "description" && (
-  <div style={{ fontSize: "18px", lineHeight: "1.6", color: "#444" }}>
-    {Products.map((item, index) => (
-      <p style={{ color: "#777", marginBottom: "20px" }}
-      dangerouslySetInnerHTML={{
-        __html: item.product_description, // Pass the actual HTML content
-      }}
-   />
-    ))}
-  </div>
-)}
-
-  {activeTab === "info" &&   <div style={{ fontSize: "18px", lineHeight: "1.6", color: "#444" }}>
-  {Products.map((item, index) => (
-    <p key={index} style={{ color: "#777", marginBottom: "20px" }}>
-      {item.product_benefits }  {/* Render as plain text */}
-    </p>
-  ))}
-</div>}
-  {activeTab === "reviews" && (
-    <div>
-     <h3 style={{ fontSize: "22px", marginBottom: "15px", color: "#333" }}>Customer Reviews</h3>
-
-{loading ? (
-  <p>Loading reviews...</p>
-) : newReviews.length > 0 ? ( // Updated state reference
-  newReviews.map((review, index) => ( // Updated state reference
-    <div
-      key={index}
-      style={{
-        marginBottom: "15px",
-        padding: "15px",
-        border: "1px solid #ddd",
-        borderRadius: "8px",
-        textAlign: "left",
-      }}
-    >
-      <strong style={{ fontSize: "16px", color: "#333" }}>{review.name}:</strong>
-      <p style={{ margin: "5px 0", fontSize: "16px", color: "#555" }}>{review.comment}</p>
-      <span style={{ color: "#f4c150", fontSize: "16px" }}>
-        {"★".repeat(review.rating)} {"☆".repeat(5 - review.rating)}
-      </span>
-    </div>
-  ))
-) : (
-  <p style={{ fontSize: "16px", color: "#777" }}>No reviews yet.</p>
-)}
-
-      {/* ⭐ Add Review Section */}
-      <div style={{ maxWidth: "900px", margin: "0 auto", textAlign: "center" }}>
-      <h3 style={{ fontSize: "22px", marginTop: "20px", color: "#333" }}>Add a Review</h3>
-
-      {/* ⭐ Star Rating Selection */}
-      <div style={{ fontSize: "24px", marginBottom: "10px", cursor: "pointer" }}>
-        {[1, 2, 3, 4, 5].map((star) => (
-          <span
-            key={star}
-            onClick={() => handleRating(star)}
-            style={{
-              color: star <= review.rating ? "#f4c150" : "#ddd",
-              marginRight: "5px",
-              cursor: "pointer",
-              transition: "0.3s",
-            }}
-          >
-            ★
-          </span>
-        ))}
-      </div>
-
-      {/* Display selected rating */}
-      <p style={{ fontSize: "16px", color: "#333" }}>Selected Rating: {review.rating} Stars</p>
-
-      <textarea 
-        placeholder="Your review" 
-        style={{ width: "100%", height: "80px", padding: "10px", fontSize: "16px", border: "1px solid #ddd", borderRadius: "8px", marginBottom: "10px" }} 
-        onChange={(e) => setReview({...review, comment: e.target.value})}
-      />
-      
-      <br />
-      <input 
-        type="text" 
-        placeholder="Name" 
-        style={{ padding: "12px", marginRight: "10px", width: "48%", border: "1px solid #ddd", borderRadius: "8px", fontSize: "16px" }} 
-        onChange={(e) => setReview({...review, name: e.target.value})}
-      />
-      
-      <input 
-        type="email" 
-        placeholder="Email" 
-        style={{ padding: "12px", width: "48%", border: "1px solid #ddd", borderRadius: "8px", fontSize: "16px" }} 
-        onChange={(e) => setReview({...review, email: e.target.value})}
-      />
-      
-      <br />
-      <button 
-        style={{ marginTop: "15px", padding: "12px 20px", backgroundColor: "#f4c150", border: "none", cursor: "pointer", fontSize: "16px", fontWeight: "bold", borderRadius: "8px", transition: "0.3s ease" }} 
-        onClick={addreview}
-      >
-        Submit Review
-      </button>
-    </div>
-    </div>
-  )}
 </div>
 
-</div>
 
 
 {/* Related product----------------------------------------------------------------------------------------- */}
 
 
-<div style={{ margin: "0 auto", padding: "20px 50px" }}>
+{/* <div style={{ margin: "0 auto", padding: "20px 50px" }}>
 <h2 className='relatedproduct' style={{ textAlign: "center", fontSize: "24px", marginBottom: "20px", marginTop:"100px", fontSize:"35px" }}>
     Check out these related items
 </h2>
@@ -541,7 +497,7 @@ function VitamincFacewash() {
       flexWrap: "wrap",
       justifyContent: "flex-start",
       gap: "20px",
-      overflow: "hidden", // Prevents unwanted scrolling
+      overflow: "hidden", 
       paddingBottom: "20px",
     }}
   >
@@ -618,7 +574,7 @@ function VitamincFacewash() {
     fontFamily: "'ITC Modern No 216', serif",
   }}
 >
-  {truncateText(product.product_name, 30)} {/* Adjust maxLength as needed */}
+  {truncateText(product.product_name, 30)} 
 </span>
 
           <div
@@ -651,7 +607,7 @@ function VitamincFacewash() {
             className="add-to-cart-btn"
             style={{
               backgroundColor: cart.some(item => item._id === product._id) 
-              ? "green"  // Change this to your desired color when item is in cart
+              ? "green"  
               : "rgb(51, 51, 51)",
               color: "white",
               border: "none",
@@ -668,25 +624,25 @@ function VitamincFacewash() {
             Add to Cart
           </button>
 
-           {/* Display message if available */}
+           
            {cartMessage[product._id] && (
   <p
     style={{
-      color: "#fff", // White text for contrast
+      color: "#fff", 
       fontSize: "0.9rem",
       fontWeight: "600",
-      background: "linear-gradient(45deg, #4CAF50, #45A049)", // Smooth green gradient
+      background: "linear-gradient(45deg, #4CAF50, #45A049)", 
       padding: "10px 15px",
       borderRadius: "8px",
       marginTop: "10px",
       display: "inline-block",
-      boxShadow: "0px 4px 8px rgba(0, 0, 0, 0.15)", // Soft shadow effect
-      borderLeft: "4px solid #2E7D32", // Left border for a card-like feel
+      boxShadow: "0px 4px 8px rgba(0, 0, 0, 0.15)", 
+      borderLeft: "4px solid #2E7D32", 
       textAlign: "center",
       letterSpacing: "0.5px",
-      transition: "transform 0.3s ease-in-out", // Animation on hover
+      transition: "transform 0.3s ease-in-out", 
     }}
-    onMouseEnter={(e) => (e.target.style.transform = "scale(1.05)")} // Slight zoom on hover
+    onMouseEnter={(e) => (e.target.style.transform = "scale(1.05)")} 
     onMouseLeave={(e) => (e.target.style.transform = "scale(1)")}
   >
     ✅ {cartMessage[product._id]}
@@ -697,15 +653,7 @@ function VitamincFacewash() {
       </div>
     ))}
   </div>
-</div>
-
-
-
-
-
-
-
-
+</div> */}
 
       <Footer />
     </div>
