@@ -143,6 +143,7 @@ const delete_product = async (req, res) => {
     try {
         const id = req.params._id; // Get product ID from URL parameter
         let updatedData = req.body; // Get updated data from the request body
+   
     
         const existingProduct = await addproduct.findById(id);
 

@@ -272,11 +272,12 @@ const handleDescriptionChange = (value) => {
       formData.append("product_type", product.product_type || "");
       formData.append("product_price", product.product_price || "");
       formData.append("product_quantity", product.product_quantity || "");
+      formData.append("product_description", product.product_description || "");
   
       // Append benefits
       if (product.product_benefits?.length > 0) {
         product.product_benefits.forEach((benefit) => {
-          formData.append("productbenefits", benefit);
+          formData.append("product_benefits", benefit);
         });
       }
   
@@ -344,6 +345,7 @@ const result=resp.data.product[0]
 
 
 
+console.log(product);
 
 
 
